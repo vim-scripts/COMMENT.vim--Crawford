@@ -1,0 +1,81 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=637
+
+Hi All,
+  Here is a script I use quite often when coding
+and I want to temporarily comment out a chunk
+of C/C++ source code.
+
+Usage:
+Select the block of code you want to comment out
+(in visual mode) and invoke :call PComment().
+
+This inputs
+#if 0
+<code block>
+#endif
+
+You can also invoke it without the visual selection
+and it comments the current line.
+
+It will also remove an #if 0 block as follows:
+
+#if 0
+<code block>
+#endif
+
+using the above example, place the cursor anywhere
+on the #if 0 line and invoke the function, voila 
+code block is restored and the #if 0 and #endif are gone.
+
+Heres a more advance example, suppose you have the
+following:
+
+#if 0
+<code block>
+#else
+<code block>
+#endif
+
+if you invoke the command on the #if 0 the #else
+it will automatically be converted to #if 0 and the code 
+block above will be restored, like so:
+
+<code block>
+#if 0
+<code block>
+#endif
+
+Also works with nested #if 0 #endif blocks:
+
+Suppose you have a large chunk of code that already
+has some #if 0 blocks.  No problem, select all you want
+including the nested comment blocks and invoke the function,
+when you want to remove the comment the proper #endif
+is matched and removed.
+
+Example:
+
+<code block1>
+#if 0
+<code block2>
+#endif
+<code block3>
+<code block4>
+
+Select all up to code block3 and invoke the function,
+we get:
+
+#if 0
+<code block1>
+#if 0
+<code block2>
+#endif
+<code block3>
+#endif
+<code block4>
+
+Move to the first #if 0 and invoke the function, voila
+you should be back to square one again.
+
+Hope you all like it.
+Have fun.
